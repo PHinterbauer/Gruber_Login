@@ -1,0 +1,96 @@
+:root{color-scheme:light}
+*{box-sizing:border-box}
+body{font:16px system-ui,sans-serif;max-width:520px;margin:40px auto;padding:0 16px;background:#f3f5f7;color:#111;transition:background .5s,color .5s}
+main{position:relative;background:#fff;padding:28px;border-radius:10px;transition:background .5s,box-shadow .5s,border-color .5s}
+h1{margin-top:0}
+label{display:block;margin-top:14px;font-weight:600}
+input,select,button{width:100%;box-sizing:border-box;padding:10px;margin-top:5px;font:inherit}
+button{background:#1464a0;color:#fff;border:0;margin-top:20px;cursor:pointer}
+button:hover{filter:brightness(1.1)}
+.message{padding:10px;background:#fff2c7}
+a{color:#1464a0}
+.small{color:#5b6570;font-size:.9rem}
+.theme-switch{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:-12px 0 22px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.theme-switch label{margin:0}
+.theme-switch select{width:auto;margin:0;padding:6px 28px 6px 9px;border:1px solid #68737d;border-radius:4px;background:#e5e9ec;color:#20252a;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+body.grimdark{color:#d8d1c2;background:#090b0d;background-image:radial-gradient(circle at 15% 10%,#4b1710 0,transparent 28%),radial-gradient(circle at 90% 80%,#6e4210 0,transparent 25%),repeating-linear-gradient(115deg,rgba(255,255,255,.025) 0 1px,transparent 1px 7px);font-family:Georgia,serif}
+body.grimdark:before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.2;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,155,38,.2) 4px,transparent 5px);animation:scan 9s linear infinite}
+body.grimdark:after{content:'IN NOMINE IMPERATORIS';position:fixed;right:-70px;bottom:48%;transform:rotate(-90deg);pointer-events:none;color:rgba(220,154,43,.12);font:700 13px monospace;letter-spacing:.35em}
+body.grimdark main{border:3px solid #8b682e;border-radius:2px;background:linear-gradient(145deg,rgba(27,29,27,.98),rgba(10,12,12,.98));box-shadow:0 0 0 5px #171715,0 0 35px rgba(191,72,20,.35),inset 0 0 35px rgba(0,0,0,.8);animation:forge 5s ease-in-out infinite}
+body.grimdark main:before{content:'// SECURE TERMINAL //  // NO HERESY //';display:block;margin:-12px -8px 20px;padding:7px;border-bottom:1px solid #8b682e;color:#df9b27;font:700 11px monospace;letter-spacing:.2em;text-align:center;animation:warning 1.8s steps(2,end) infinite}
+body.grimdark h1,body.grimdark h2{color:#e8b84a;text-transform:uppercase;letter-spacing:.08em;text-shadow:2px 2px #54170e}
+body.grimdark h1:before{content:'✠ ';color:#bd3420}
+body.grimdark input,body.grimdark select{border:1px solid #726135;background:#111513;color:#eee1c7;border-radius:0}
+body.grimdark input:focus,body.grimdark select:focus{outline:2px solid #d88925;box-shadow:0 0 14px rgba(216,137,37,.5)}
+body.grimdark button{border:1px solid #e1a33a;border-radius:0;background:linear-gradient(#9b3d1e,#50160f);box-shadow:0 0 12px rgba(213,91,27,.45);font-family:Georgia,serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+body.grimdark button:hover{background:linear-gradient(#bf5b25,#6e1d12);filter:none;transform:translateY(-1px)}
+body.grimdark a{color:#e6ac3a}
+body.grimdark .small{color:#aaa18f}
+body.grimdark .message{border:1px solid #c7862d;background:#3c2412;color:#ffd98b;box-shadow:inset 0 0 12px #1a0d06}
+body.grimdark .theme-switch{color:#df9b27}
+body.grimdark .theme-switch select{border:2px solid #d38b26;background:repeating-linear-gradient(-45deg,#5d1b12 0 7px,#7e2b17 7px 14px);color:#ffe2a2;box-shadow:0 0 0 2px #24140e,0 0 18px rgba(230,103,24,.65);animation:button-glitch 2.4s steps(2,end) infinite}
+body.grimdark .theme-switch select:hover{background:repeating-linear-gradient(-45deg,#8d321a 0 7px,#b34820 7px 14px);box-shadow:0 0 0 2px #24140e,0 0 28px rgba(255,143,27,.95);transform:skew(-3deg) translateY(-2px)}
+body.kawaii{color:#5b3154;background:#ffeaf7;background-image:radial-gradient(circle at 12% 15%,#fff 0 3px,transparent 4px),radial-gradient(circle at 85% 22%,#ff9fcf 0 4px,transparent 5px),linear-gradient(135deg,#fff5fc,#e8f7ff);font-family:'Comic Sans MS','Trebuchet MS',sans-serif}
+body.kawaii main{border:4px solid #ff91c8;border-radius:28px;background:rgba(255,255,255,.88);box-shadow:0 8px 0 #d985b3,0 15px 35px rgba(184,104,163,.25);animation:kawaii-float 4s ease-in-out infinite}
+body.kawaii main:before{content:'♡  ✦  DREAMY LOGIN  ✦  ♡';display:block;margin:-12px -8px 20px;padding:8px;border-bottom:3px dashed #ffacd3;color:#ec67aa;font-size:12px;font-weight:700;text-align:center;letter-spacing:.12em}
+body.kawaii h1,body.kawaii h2{color:#ed62a7;text-shadow:2px 2px #ffd1e7;letter-spacing:.04em}
+body.kawaii h1:before{content:'★ ';color:#8d9cff}
+body.kawaii input,body.kawaii select{border:2px solid #b6a7ff;border-radius:13px;background:#fff;color:#5b3154;box-shadow:inset 0 2px 5px rgba(155,112,184,.12)}
+body.kawaii input:focus,body.kawaii select:focus{outline:3px solid #ffacd3;box-shadow:0 0 0 5px rgba(255,172,211,.3)}
+body.kawaii button{border:2px solid #8e83df;border-radius:15px;background:linear-gradient(90deg,#9e9aff,#ff9fca);box-shadow:0 5px 0 #8175c9;color:#fff;font-weight:700;text-shadow:1px 1px #9970b5}
+body.kawaii button:hover{filter:brightness(1.06);transform:translateY(-2px)}
+body.kawaii a{color:#9a67d8}
+body.kawaii .small{color:#9a6a91}
+body.kawaii .message{border:2px solid #ffc05f;border-radius:14px;background:#fff5c9;color:#8a5b38}
+body.kawaii .theme-switch{color:#d75a9b}
+body.kawaii .theme-switch select{border:2px solid #ff91c8;background:#fff1fa;color:#b84d8b;box-shadow:0 3px 0 #e2a0c2}
+body.cyberpunk{color:#d9f7ff;background:#050812;background-image:linear-gradient(rgba(0,240,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.08) 1px,transparent 1px),radial-gradient(circle at 20% 20%,#4b0755,transparent 35%),radial-gradient(circle at 85% 80%,#073a54,transparent 30%);background-size:32px 32px,32px 32px,auto,auto;font-family:'Courier New',monospace}
+body.cyberpunk main{border:2px solid #00f0ff;border-radius:0;background:linear-gradient(125deg,rgba(8,16,35,.96),rgba(22,5,31,.96));box-shadow:8px 8px 0 #ff1b8d,-8px -8px 0 #152c60,0 0 35px rgba(0,240,255,.4);animation:cyber-pulse 2.8s ease-in-out infinite}
+body.cyberpunk main:before{content:'[ NEURAL LINK ESTABLISHED ]';display:block;margin:-12px -8px 20px;padding:8px;border-bottom:1px solid #ff1b8d;color:#00f0ff;font:700 12px monospace;letter-spacing:.12em;text-align:center}
+body.cyberpunk h1,body.cyberpunk h2{color:#00f0ff;text-transform:uppercase;text-shadow:3px 0 #ff1b8d;letter-spacing:.12em}
+body.cyberpunk h1:before{content:'>> ';color:#ff1b8d}
+body.cyberpunk input,body.cyberpunk select{border:1px solid #00f0ff;border-radius:0;background:#080f1c;color:#d9f7ff;box-shadow:inset 0 0 10px rgba(0,240,255,.15)}
+body.cyberpunk input:focus,body.cyberpunk select:focus{outline:2px solid #ff1b8d;box-shadow:0 0 16px #ff1b8d}
+body.cyberpunk button{border:1px solid #00f0ff;border-radius:0;background:#151a37;color:#00f0ff;box-shadow:4px 4px 0 #ff1b8d;font-family:monospace;font-weight:700;text-transform:uppercase}
+body.cyberpunk button:hover{background:#26205b;transform:translate(-2px,-2px)}
+body.cyberpunk a{color:#ff6db6}
+body.cyberpunk .small{color:#8ad4e2}
+body.cyberpunk .message{border:1px solid #ff1b8d;background:#321338;color:#ffb4d9}
+body.cyberpunk .theme-switch{color:#00f0ff}
+body.cyberpunk .theme-switch select{border-color:#ff1b8d;background:#151a37;color:#00f0ff}
+body.battle-royale{color:#fff;background:#55c9f2;background-image:linear-gradient(145deg,rgba(255,255,255,.18) 25%,transparent 25% 50%,rgba(255,255,255,.12) 50% 75%,transparent 75%),linear-gradient(160deg,#5d37c8,#1596dc 55%,#ffc12c);background-size:42px 42px,auto;font-family:'Trebuchet MS',Arial,sans-serif}
+body.battle-royale main{border:5px solid #fff;border-radius:20px;background:linear-gradient(150deg,rgba(43,20,111,.95),rgba(13,119,177,.94));box-shadow:0 8px 0 #f6a800,0 15px 0 #54249a,0 18px 30px rgba(32,25,100,.45);transform:rotate(-.5deg)}
+body.battle-royale main:before{content:'★  DROP IN  •  LEVEL UP  •  SQUAD READY  ★';display:block;margin:-12px -8px 20px;padding:9px;border-bottom:3px solid #ffc928;color:#fff;font-weight:900;text-align:center;letter-spacing:.08em}
+body.battle-royale h1,body.battle-royale h2{color:#ffe33f;text-transform:uppercase;text-shadow:3px 3px #54249a;font-weight:900}
+body.battle-royale h1:before{content:'⚡ ';color:#ffcb27}
+body.battle-royale input,body.battle-royale select{border:3px solid #ffc928;border-radius:10px;background:#fff;color:#35206f;box-shadow:0 3px 0 #54249a}
+body.battle-royale input:focus,body.battle-royale select:focus{outline:3px solid #fff;box-shadow:0 0 0 5px #ff5c9c}
+body.battle-royale button{border:3px solid #fff;border-radius:12px;background:linear-gradient(#ffdf37,#ff8b22);box-shadow:0 5px 0 #a82e9d;color:#48206c;font-weight:900;text-transform:uppercase}
+body.battle-royale button:hover{filter:saturate(1.25) brightness(1.08);transform:translateY(-2px) rotate(1deg)}
+body.battle-royale a{color:#ffe33f}
+body.battle-royale .small{color:#d8f7ff}
+body.battle-royale .message{border:3px solid #ffc928;border-radius:12px;background:#802c9d;color:#fff}
+body.battle-royale .theme-switch{color:#fff}
+body.battle-royale .theme-switch select{border-color:#fff;background:#54249a;color:#ffe33f}
+body.farm25{color:#293b2b;background:#d7e6b2;background-image:linear-gradient(160deg,rgba(255,255,255,.55),transparent 45%),linear-gradient(180deg,#9ed3e8 0 48%,#709d4b 48% 100%);font-family:Arial,sans-serif}
+body.farm25 main{border:4px solid #456d35;border-radius:8px;background:linear-gradient(180deg,#f3f0d8,#e6e3bd);box-shadow:0 8px 0 #344e2b,0 16px 28px rgba(42,69,36,.35);animation:field-breeze 6s ease-in-out infinite}
+body.farm25 main:before{content:'FIELD OFFICE 25  •  SEASON READY';display:block;margin:-12px -8px 20px;padding:9px;border-bottom:3px solid #88a94c;color:#456d35;font:700 12px Arial;text-align:center;letter-spacing:.15em}
+body.farm25 h1,body.farm25 h2{color:#456d35;text-transform:uppercase;letter-spacing:.04em}
+body.farm25 h1:before{content:'▰ ';color:#e0992d}
+body.farm25 input,body.farm25 select{border:2px solid #7e9d4a;border-radius:4px;background:#fffdf0;color:#293b2b;box-shadow:inset 0 2px 4px rgba(60,77,31,.15)}
+body.farm25 input:focus,body.farm25 select:focus{outline:3px solid #e4ac42}
+body.farm25 button{border:2px solid #456d35;border-radius:5px;background:linear-gradient(#e3a737,#c67a1d);box-shadow:0 4px 0 #456d35;color:#fff;font-weight:700;text-transform:uppercase}
+body.farm25 button:hover{background:linear-gradient(#f0bc4e,#d78922);transform:translateY(-2px)}
+body.farm25 a{color:#4c7b35}
+body.farm25 .small{color:#61774a}
+body.farm25 .message{border:2px solid #d19a32;border-radius:5px;background:#fff3bf;color:#655020}
+body.farm25 .theme-switch{color:#456d35}
+body.farm25 .theme-switch select{border-color:#456d35;background:#f3f0d8;color:#456d35}
+@keyframes scan{from{transform:translateY(-8px)}to{transform:translateY(8px)}}
+@keyframes forge{0%,100%{box-shadow:0 0 0 5px #171715,0 0 28px rgba(191,72,20,.28),inset 0 0 35px rgba(0,0,0,.8)}50%{box-shadow:0 0 0 5px #171715,0 0 42px rgba(255,135,26,.52),inset 0 0 35px rgba(0,0,0,.8)}}
+@keyframes warning{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes button-glitch{0%,89%,100%{transform:none}90%{transform:translateX(-2px) skew(4deg)}92%{transform:translateX(2px) skew(-4deg)}}
+@keyframes kawaii-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes cyber-pulse{0%,100%{box-shadow:8px 8px 0 #ff1b8d,-8px -8px 0 #152c60,0 0 25px rgba(0,240,255,.35)}50%{box-shadow:8px 8px 0 #ff1b8d,-8px -8px 0 #152c60,0 0 48px rgba(255,27,141,.55)}}
+@keyframes field-breeze{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){*,*:before{animation-duration:.01ms!important;transition-duration:.01ms!important}}

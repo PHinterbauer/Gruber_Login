@@ -52,9 +52,17 @@ RESET_MINUTES = 15
 app = Flask(__name__)
 app.secret_key = CONFIG.get("app", "flask_secret", fallback="change-me-before-production")
 
-PAGE = """<!doctype html><html lang='de'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Login</title><style>body{font:16px system-ui;max-width:520px;margin:40px auto;padding:0 16px;background:#f3f5f7}main{background:#fff;padding:28px;border-radius:10px}label{display:block;margin-top:14px;font-weight:600}input,button{width:100%;box-sizing:border-box;padding:10px;margin-top:5px}button{background:#1464a0;color:#fff;border:0;margin-top:20px;cursor:pointer}.message{padding:10px;background:#fff2c7}a{color:#1464a0}.small{color:#5b6570;font-size:.9rem}</style><main>
-<h1>Login</h1><p class='small'>Sicherheitsstufe {{ level }} von 3</p>{% for message in get_flashed_messages() %}<p class='message'>{{ message }}</p>{% endfor %}{{ body|safe }}</main></html>"""
+PAGE = """<!doctype html><html lang='de'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Login</title><link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'></head><body><main>
+<div class='theme-switch'><label for='theme-select'>Design:</label><select id='theme-select' aria-label='Design auswählen'><option value='standard'>Standard</option><option value='grimdark'>Warhammer</option><option value='kawaii'>Anime Kawaii</option><option value='cyberpunk'>Cyberpunk</option><option value='battle-royale'>Fortnite</option><option value='farm25'>Farming Simulator 25</option></select></div>
+<h1>Login</h1><p class='small'>Sicherheitsstufe {{ level }} von 3</p>{% for message in get_flashed_messages() %}<p class='message'>{{ message }}</p>{% endfor %}{{ body|safe }}</main>
+<script>
+(function(){const body=document.body,select=document.getElementById('theme-select'),key='login-theme',themes=['standard','grimdark','kawaii','cyberpunk','battle-royale','farm25'];
+function update(theme){themes.slice(1).forEach(function(name){body.classList.toggle(name,theme===name);});select.value=theme;}
+localStorage.removeItem(key);update('standard');
+select.addEventListener('change',function(){localStorage.setItem(key,this.value);update(this.value);});
+}());
+</script></body></html>"""
 
 PASSWORD_SCRIPT = """<script>async function protect(form){const field=form.password;const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(field.value));field.value=Array.from(new Uint8Array(bytes),byte=>byte.toString(16).padStart(2,'0')).join('');return true}</script>"""
 
