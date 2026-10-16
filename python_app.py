@@ -295,7 +295,7 @@ def otp_qr():
     otp_uri = f"otpauth://totp/{label}?secret={user['totp_secret']}&issuer={issuer}"
     image = qrcode.make(otp_uri)
     output = io.BytesIO()
-    image.save(output, format="PNG")
+    image.save(output, "PNG")
     output.seek(0)
     return app.response_class(output.getvalue(), mimetype="image/png")
 
