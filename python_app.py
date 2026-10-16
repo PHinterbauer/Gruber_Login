@@ -59,7 +59,7 @@ PAGE = """<!doctype html><html lang='de'><head><meta charset='utf-8'><meta name=
 <script>
 (function(){const body=document.body,select=document.getElementById('theme-select'),key='login-theme',themes=['standard','grimdark','kawaii','cyberpunk','battle-royale','farm25','beer','cheese'];
 function update(theme){themes.slice(1).forEach(function(name){body.classList.toggle(name,theme===name);});select.value=theme;}
-localStorage.removeItem(key);update('standard');
+const savedTheme=localStorage.getItem(key);update(themes.includes(savedTheme)?savedTheme:'standard');
 select.addEventListener('change',function(){localStorage.setItem(key,this.value);update(this.value);});
 }());
 </script></body></html>"""
@@ -319,6 +319,12 @@ def settings():
         if not hmac.compare_digest(request.form.get("csrf_token", ""), csrf_token()):
             flash("Ungültige Anfrage.")
             return redirect(url_for("settings"))
+        if request.form.get("action") == "delete_all_users":
+            with connect() as connection:
+                connection.execute("DELETE FROM users")
+            session.clear()
+            flash("Alle gespeicherten Login-Daten wurden gelöscht.")
+            return redirect(url_for("login"))
         try:
             level = int(request.form["auth_level"])
         except (KeyError, ValueError):
@@ -332,7 +338,7 @@ def settings():
             return redirect(url_for("dashboard"))
     selected = {1: "", 2: "", 3: ""}
     selected[AUTH_LEVEL] = " selected"
-    body = """<h2>Sicherheitsstufe</h2><form method='post'><input type='hidden' name='csrf_token' value='{}'><label>Login-Verfahren<select name='auth_level'><option value='1'{}>1: E-Mail und Passwort</option><option value='2'{}>2: zusätzlich E-Mail-Code</option><option value='3'{}>3: zusätzlich OTP-Authenticator</option></select></label><button>Speichern</button></form><p><a href='/dashboard'>Zurück</a></p>""".format(csrf_token(), selected[1], selected[2], selected[3])
+    body = """<h2>Sicherheitsstufe</h2><form method='post'><input type='hidden' name='csrf_token' value='{}'><label>Login-Verfahren<select name='auth_level'><option value='1'{}>1: E-Mail und Passwort</option><option value='2'{}>2: zusätzlich E-Mail-Code</option><option value='3'{}>3: zusätzlich OTP-Authenticator</option></select></label><button>Speichern</button></form><hr><h2>Gespeicherte Daten löschen</h2><p class='small'>Dabei werden alle registrierten Konten, Passwort-Hashes, TOTP-Schlüssel und Passwort-Reset-Daten dauerhaft gelöscht.</p><form method='post' onsubmit="return confirm('Achtung: Wirklich alle gespeicherten Login-Daten löschen? Dieser Vorgang kann nicht rückgängig gemacht werden.')"><input type='hidden' name='csrf_token' value='{}'><input type='hidden' name='action' value='delete_all_users'><button type='submit' class='danger-button'>Alle Login-Daten löschen</button></form><p><a href='/dashboard'>Zurück</a></p>""".format(csrf_token(), selected[1], selected[2], selected[3], csrf_token())
     return page(body)
 
 

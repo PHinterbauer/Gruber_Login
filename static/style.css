@@ -7,6 +7,9 @@ label{display:block;margin-top:14px;font-weight:600}
 input,select,button{width:100%;box-sizing:border-box;padding:10px;margin-top:5px;font:inherit}
 button{background:#1464a0;color:#fff;border:0;margin-top:20px;cursor:pointer}
 button:hover{filter:brightness(1.1)}
+.danger-button{background:#b3261e!important}
+.danger-button:hover{background:#8f1d18!important}
+hr{border:0;border-top:1px solid #d7dde2;margin:28px 0 20px}
 .message{padding:10px;background:#fff2c7}
 a{color:#1464a0}
 .small{color:#5b6570;font-size:.9rem}
